@@ -28,6 +28,7 @@ import DrawerNavCustomHeader from '../../shared_components/DrawerNavCustomHeader
 //##########################
 
 import { createStackNavigator } from '@react-navigation/stack';
+import CustomHeaderBgImage from '../../shared_components/CustomHeaderBgImage';
 
 //Stack Navigation
 const StackNav = createStackNavigator();
@@ -42,7 +43,10 @@ function HomeStackNav() {
                 options={({ navigation }) => ({
                     headerTitle: () => {
                         return <DrawerNavCustomHeader title='Reviews List' navigation={navigation} />
-                    }
+                    },
+                    headerBackground: () => (
+                        <CustomHeaderBgImage />
+                    )
                 })}
             />
             <StackNav.Screen name="Details" component={ReviewDetails} />

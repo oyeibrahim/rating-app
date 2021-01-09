@@ -1,7 +1,7 @@
 //Custom header for drawer navigation
 
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
 import { MaterialIcons } from "@expo/vector-icons";
 
 const DrawerNavCustomHeader = ({ navigation, title }) => {
@@ -19,9 +19,13 @@ const DrawerNavCustomHeader = ({ navigation, title }) => {
                 style={styles.icon}
             />
 
-            <Text>
+            <View style={styles.headerTitle}>
                 <Text style={styles.headerText}>{title}</Text>
-            </Text>
+                <Image
+                    source={require('../assets/3d-heart.png')}
+                    style={styles.headerImage}
+                />
+            </View>
 
         </View>
     )
@@ -35,11 +39,11 @@ const styles = StyleSheet.create({
         height: '100%',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     headerText: {
         // fontWeight: 'bold',
-        fontFamily:'ubuntu-bold',
+        fontFamily: 'ubuntu-bold',
         fontSize: 20,
         color: '#333',
         letterSpacing: 1
@@ -47,5 +51,13 @@ const styles = StyleSheet.create({
     icon: {
         position: 'absolute',
         left: 6
+    },
+    headerTitle: {
+        flexDirection: 'row'
+    },
+    headerImage: {
+        width: 30,
+        height: 26,
+        marginHorizontal: 10,
     }
 })
