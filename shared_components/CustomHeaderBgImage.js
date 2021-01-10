@@ -4,7 +4,7 @@ import { StyleSheet, Image } from 'react-native'
 const CustomHeaderBgImage = () => {
     return (
         <Image
-            source={require('../assets/rating_bg3.jpg')}
+            source={require('../assets/rating_bg7.jpg')}
             style={styles.design}
         />
     )

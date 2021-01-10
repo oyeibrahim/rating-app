@@ -6,6 +6,9 @@
 // ReviewDetails.js
 //##########################
 
+// npm install formik
+// npm install yup
+
 import React from 'react'
 import HomeScreen from "../../screens/Home";
 import ReviewDetails from '../../screens/ReviewDetails';
