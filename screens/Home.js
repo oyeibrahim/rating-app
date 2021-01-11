@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FlatList, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Keyboard, Modal, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
 import { globalStyles } from '../styles/Global'
 //Data
 import { data } from "../db/data";
@@ -16,29 +16,34 @@ const Home = ({ navigation }) => {
 
     //used in ReveiewForm
     const addReview = (review) => {
-        setReviews()
-        // setTodos((prevTodos) => {
-        //     // to get incrementing key so keys won't match
-        //     let newKey = parseInt(prevTodos[prevTodos.length - 1].key) + 1
-        //     return [...prevTodos, { text, key: newKey.toString() }]
-        //   })
+        setReviews((currentReviews) => {
+            // to get incrementing id so ids won't match
+            // this creates a new field id in the JSON
+            review.id = parseInt(currentReviews[currentReviews.length - 1].id) + 1
+            return [...currentReviews, review]
+        });
+        // close modal after review submission
+        setModalOpen(false)
     }
 
     return (
         <View style={globalStyles.container}>
 
             <Modal visible={modalOpen} animationType='slide'>
-                <View style={styles.modalContent}>
-                    <MaterialIcons
-                        name='close'
-                        size={24}
-                        style={{ ...styles.modalToggle, ...styles.modalClose }}
-                        onPress={() => { setModalOpen(false) }}
-                    />
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <View style={styles.modalContent}>
+                        <MaterialIcons
+                            name='close'
+                            size={24}
+                            style={{ ...styles.modalToggle, ...styles.modalClose }}
+                            onPress={() => { setModalOpen(false) }}
+                        />
 
-                    <ReviewForm />
+                        {/* pass addReview funtion as prop */}
+                        <ReviewForm addReview={addReview} />
 
-                </View>
+                    </View>
+                </TouchableWithoutFeedback>
             </Modal>
 
             <MaterialIcons
